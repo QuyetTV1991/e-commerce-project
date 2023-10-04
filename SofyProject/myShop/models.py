@@ -5,11 +5,11 @@ import datetime
 # Category Model
 class Category(models.Model):
 
-    name = models.CharField(_("category name"), max_length=50)
+    name = models.CharField(max_length=50)
 
     class Meta:
-        verbose_name = _("Category")
-        verbose_name_plural = _("Categories")
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
@@ -26,15 +26,15 @@ class Category(models.Model):
 # Customer Model
 class Customer(models.Model):
 
-    first_name = models.CharField(_("first name"), max_length=50)
-    last_name = models.CharField(_("last name"), max_length=50)
-    phone = models.CharField(_("phone number"), max_length=10)
-    email = models.EmailField(_("email"), max_length=254)
-    password = models.CharField(_("password"), max_length=100)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=10)
+    email = models.EmailField(max_length=254)
+    password = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name = _("customer")
-        verbose_name_plural = _("customers")
+        verbose_name = "customer"
+        verbose_name_plural = "customers"
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -64,14 +64,14 @@ class Customer(models.Model):
 # Product Model
 class Products(models.Model):
 
-    name = models.CharField(_("product Name"), max_length=50)
-    price = models.IntegerField(_("price"), default=0)
-    category = models.ForeignKey("Category", verbose_name=_("category"), on_delete=models.CASCADE, default=1)
-    image = models.ImageField(_("image"), upload_to='uploads/products/', height_field=None, width_field=None, max_length=None)
+    name = models.CharField(max_length=50)
+    price = models.IntegerField(default=0)
+    category = models.ForeignKey("Category", verbose_name="category", on_delete=models.CASCADE, default=1)
+    image = models.ImageField(upload_to='uploads/products/')
 
     class Meta:
-        verbose_name = _("product")
-        verbose_name_plural = _("products")
+        verbose_name = "product"
+        verbose_name_plural = "products"
 
     def __str__(self):
         return self.name
@@ -98,18 +98,18 @@ class Products(models.Model):
 # Orders View
 class Order(models.Model):
 
-    product = models.ForeignKey("Products", verbose_name=_("product name"), on_delete=models.CASCADE)
-    customer = models.ForeignKey("Customer", verbose_name=_("customer"), on_delete=models.CASCADE)
-    quantity = models.IntegerField(_("quantity"), default=1)
-    price = models.IntegerField(_("price"))
-    address = models.CharField(_("address"), max_length=50, default='', blank=True)
-    phone = models.CharField(_("phone"), max_length=50, default='', blank=True)
-    date = models.DateField(_("order date"), default=datetime.datetime.today)
-    status = models.BooleanField(_("status"), default=False)
+    product = models.ForeignKey("Products", verbose_name="product name", on_delete=models.CASCADE)
+    customer = models.ForeignKey("Customer", verbose_name="customer", on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    price = models.IntegerField()
+    address = models.CharField(max_length=50, default='', blank=True)
+    phone = models.CharField(max_length=50, default='', blank=True)
+    date = models.DateField(default=datetime.datetime.today)
+    status = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = _("order")
-        verbose_name_plural = _("orders")
+        verbose_name = "order"
+        verbose_name_plural = "orders"
 
     def __str__(self):
         return self.name
