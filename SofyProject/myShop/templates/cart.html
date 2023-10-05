@@ -10,7 +10,10 @@
 
 <div class="container">
   <div class="border rounded p-4 m-4">
-    <p class="display-4 pl-4 ml-4 btn btn-success rounded-pill">Your Cart</p>
+    <p class="display-4 px-4 ml-4 btn btn-success rounded-pill">Your Cart</p>
+    {% if not products %}
+    <p class="text-danger px-4 ml-1"> Your cart is empty </p>
+    {% endif %}
     <hr />
 
     <table class="table">
@@ -41,6 +44,7 @@
           <td>{{product|cart_quantity:request.session.cart}}</td>
           <td>{{product|price_total:request.session.cart|currency}}</td>
         </tr>
+        {% empty %}
 
         {% endfor %}
       </tbody>
