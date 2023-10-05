@@ -112,7 +112,7 @@ class Order(models.Model):
         verbose_name_plural = "orders"
 
     def __str__(self):
-        return self.name
+        return f'{self.customer} {self.product}'
 
     def get_absolute_url(self):
         return reverse("order_detail", kwargs={"pk": self.pk})
